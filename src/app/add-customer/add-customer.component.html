@@ -21,7 +21,7 @@
                 <small class="form-text text-muted">Enter your full name</small>
             </div>
             <div class="row form-group py-3">
-                <input type="text" class="form-control border-info" id="name" placeholder="Phone Number">
+                <input type="text" class="form-control border-info" id="num" placeholder="Phone Number">
                 <small class="form-text text-muted">10 digit number only</small>
             </div>
             <div class="row form-group py-3">
@@ -38,23 +38,23 @@
                 <label class="form-check-label" for="female">Female</label>
             </div>
             <div class="row">
-                <select class="form-control my-3 border-info w-50">
+                <select class="form-control my-3 border-info w-50" id="fCity" (change)="sel_from()">
                     <option>From location</option>
                     <option *ngFor="let city of cities, let i = index" id="{{i}}_fcity">{{city}}</option>
                 </select>
-                <select class="form-control my-3 border-info w-50">
+                <select class="form-control my-3 border-info w-50" id="tCity" (change)="sel_to()">
                     <option>To location</option>
-                    <option *ngFor="let city of cities, let i = index" id="{{i}}_tcity">{{city}}</option>
+                    <option *ngFor=" let city of cities, let i=index" id="{{i}}_tcity">{{city}}</option>
                 </select>
             </div>
             <div class="row">
-                <select class="form-control my-3 border-info w-50">
+                <select class="form-control my-3 border-info w-50" id="fLoc">
                     <option>Pickup From</option>
-                    <option *ngFor="let location of locations, let i = index" id="{{i}}_floc">{{location}}</option>
+                    <option *ngFor="let location of locations_from, let i = index" id="{{i}}_floc">{{location}}</option>
                 </select>
-                <select class="form-control my-3 border-info w-50">
+                <select class="form-control my-3 border-info w-50" id="tLoc">
                     <option>Drop To</option>
-                    <option *ngFor="let location of locations, let i = index" id="{{i}}_tloc">{{location}}</option>
+                    <option *ngFor="let location of locations_to, let i = index" id="{{i}}_tloc">{{location}}</option>
                 </select>
             </div>
             <div class="form-check form-check-inline my-3 px-5">
