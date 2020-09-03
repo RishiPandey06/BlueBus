@@ -1,0 +1,80 @@
+<div>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-info px-5">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link lead" href="#"><strong>Home</strong></a>
+                    <a class="nav-link active lead text-white" href="add_customer"><strong>Add Customer</strong></a>
+                    <a class="nav-link lead" href="view_customer"><strong>View Customers</strong></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row container-fluid justify-content-center pt-5">
+        <form class="col-4 justify-content-center">
+            <div class="row form-group py-3">
+                <input type="text" class="form-control border-info" id="name" placeholder="Name">
+                <small class="form-text text-muted">Enter your full name</small>
+            </div>
+            <div class="row form-group py-3">
+                <input type="text" class="form-control border-info" id="name" placeholder="Phone Number">
+                <small class="form-text text-muted">10 digit number only</small>
+            </div>
+            <div class="row form-group py-3">
+                <input type="email" class="form-control border-info" id="email" placeholder="Email Id">
+                <small class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-check form-check-inline py-3 pr-5">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="row">
+                <select class="form-control my-3 border-info w-50">
+                    <option>From location</option>
+                    <option *ngFor="let city of cities, let i = index" id="{{i}}_fcity">{{city}}</option>
+                </select>
+                <select class="form-control my-3 border-info w-50">
+                    <option>To location</option>
+                    <option *ngFor="let city of cities, let i = index" id="{{i}}_tcity">{{city}}</option>
+                </select>
+            </div>
+            <div class="row">
+                <select class="form-control my-3 border-info w-50">
+                    <option>Pickup From</option>
+                    <option *ngFor="let location of locations, let i = index" id="{{i}}_floc">{{location}}</option>
+                </select>
+                <select class="form-control my-3 border-info w-50">
+                    <option>Drop To</option>
+                    <option *ngFor="let location of locations, let i = index" id="{{i}}_tloc">{{location}}</option>
+                </select>
+            </div>
+            <div class="form-check form-check-inline my-3 px-5">
+                <input class="form-check-input" type="checkbox" id="ac" value="true">
+                <label class="form-check-label" for="ac">AC</label>
+            </div>
+            <div class="form-check form-check-inline px-5">
+                <input class="form-check-input" type="checkbox" id="sleeper" value="true">
+                <label class="form-check-label" for="sleeper">Sleeper</label>
+            </div>
+            <div class="form-check form-check-inline px-5">
+                <input class="form-check-input" type="checkbox" id="meals" value="true">
+                <label class="form-check-label" for="meals">Meals</label>
+            </div>
+            <div class="form-check form-check-inline px-5">
+                <input class="form-check-input" type="checkbox" id="tv" value="true">
+                <label class="form-check-label" for="tv">TV</label>
+            </div>
+            <br />
+            <button class="btn-block btn-lg btn-info mt-4" id="add" (click)="add_customer()">Submit</button>
+        </form>
+    </div>
+</div>
