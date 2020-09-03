@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../api.service";
+import { customer } from "../customer";
 
 @Component({
   selector: 'app-add-customer',
@@ -11,6 +12,7 @@ export class AddCustomerComponent implements OnInit {
   cities: string[] = [];
   locations_to: string[] = [];
   locations_from: string[] = [];
+  data: customer = history.state.data;
 
   constructor(private api: ApiService) { }
 
@@ -24,7 +26,20 @@ export class AddCustomerComponent implements OnInit {
       }
       i += 1;
     }
-
+    if (this.data !== undefined) {
+      (<HTMLInputElement>document.getElementById("name")).value = this.data.name;
+      (<HTMLInputElement>document.getElementById("num")).value = this.data.phone;
+      (<HTMLInputElement>document.getElementById("num")).disabled = true;
+      (<HTMLInputElement>document.getElementById("email")).value = this.data.email;
+      let gender = this.data.gender;
+      if (gender == 0) {
+        (<HTMLInputElement>document.getElementById("female")).checked = true;
+      }
+      else {
+        (<HTMLInputElement>document.getElementById("male")).checked = true;
+      }
+      (<HTMLButtonElement>document.getElementById("add")).innerHTML = "Update";
+    }
   }
 
   async sel_to(): Promise<void> {
@@ -62,8 +77,13 @@ export class AddCustomerComponent implements OnInit {
     let f_loc = (<HTMLSelectElement>document.getElementById("fLoc")).value
     let t_loc = (<HTMLSelectElement>document.getElementById("tLoc")).value
 
-    let request = this.api.insert_customer(name, num, email, gender.toString(), f_city, t_city, f_loc, t_loc);
-    alert();
-    let response = await request.toPromise() as Promise<void>;
+    if ((<HTMLButtonElement>document.getElementById("add")).innerHTML == "Submit") {
+      let request = this.api.insert_customer(name, num, email, gender.toString(), f_city, t_city, f_loc, t_loc);
+      await request.toPromise() as Promise<void>;
+    }
+    else {
+      let request = this.api.edit_customer(name, num, email, gender.toString(), f_city, t_city, f_loc, t_loc);
+      await request.toPromise() as Promise<void>;
+    }
   }
 }

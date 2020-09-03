@@ -46,5 +46,23 @@ public class EmployeeDAOImpl {
 		String sql ="insert into customers values(?,?,?,?,?,?,?,?)";
 		temp.update(sql, new Object[] {name, phone, email, gender, fromLoc, toLoc, fromPick, toPick});
 	}
+	
+	public List<customer> getCustomers()
+	{
+		String sql = "select * from customers";
+		List<customer> cs = temp.query(sql,new customerMapper());
+		return cs;
+	}
+	
+	public void deleteCustomer(String phone_number)
+	{
+		String sql = "delete from customers where phone_number = ? ";
+		temp.update(sql,new Object[] {phone_number});
+	}
+	public void editCustomer(String name, String phone, String email, int gender, String fromLoc, String toLoc, String fromPick, String toPick)
+	{
+		String sql = "update customers set name = ?, email = ?, gender = ?, from_loc = ?, to_loc = ?, from_pick = ?, to_pick = ? where phone_number = ?";
+		temp.update(sql, new Object[] {name,email, gender, fromLoc, toLoc, fromPick, toPick,phone});
+	}
 
 }

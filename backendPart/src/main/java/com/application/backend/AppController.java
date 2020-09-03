@@ -44,5 +44,23 @@ public class AppController {
 			@RequestParam("toLoc") String toLoc, @RequestParam("fromPick") String fromPick, @RequestParam("toPick") String toPick) {
 		DAO.addCustomers(name, phoneNumber, email, Integer.parseInt(gender), fromLoc, toLoc, fromPick, toPick);
 	}
-
+	
+	@RequestMapping(value = "/getCustomers", method = RequestMethod.GET)
+	public List<customer> get_customers()
+	{
+		return DAO.getCustomers();
+	}
+	
+	@RequestMapping(value = "/deleteCustomer", method = RequestMethod.GET)
+	public void delete_customers(@RequestParam("phone") String phoneNumber)
+	{
+		DAO.deleteCustomer(phoneNumber);
+	}
+	
+	@RequestMapping(value = "/editCustomer", method = RequestMethod.GET)
+	public void edit_customer(@RequestParam("name") String name, @RequestParam("phone") String phoneNumber,
+			@RequestParam("email") String email, @RequestParam("gender") String gender, @RequestParam("fromLoc") String fromLoc,
+			@RequestParam("toLoc") String toLoc, @RequestParam("fromPick") String fromPick, @RequestParam("toPick") String toPick) {
+		DAO.editCustomer(name, phoneNumber, email, Integer.parseInt(gender), fromLoc, toLoc, fromPick, toPick);
+	}
 }
